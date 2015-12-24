@@ -5,14 +5,7 @@ import java.io.InputStream;
 
 public class Request {
 	private InputStream input;
-	private String url;
-	public Request(){
-		
-	}
-
-	public Request(InputStream input) {
-    this.input = input;
-	}
+	private String url;	
 
 	public String parse() throws IOException {
 		StringBuffer request = new StringBuffer(2048);
@@ -38,6 +31,23 @@ public class Request {
 		}
 		return null;
 	}
+
+	public InputStream getInput() {
+		return input;
+	}
+
+	public void setInput(InputStream input) {
+		this.input = input;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
 
 	
 }

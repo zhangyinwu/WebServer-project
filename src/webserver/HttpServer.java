@@ -10,13 +10,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class HttpServer {
-	// private int iport=8080;//Ĭ�϶˿ں�
-	// public static String Basic_Root=System.getProperty(user.dir);
 	public static String host;
 	public static String Web_Root = System.getProperty("user.dir")+File.separator;
-			
-
-	// public static int count=0;
 	public void await(String ihost, int iport) throws UnknownHostException,
 			IOException {
 		host="localhost:"+iport;
@@ -29,14 +24,15 @@ public class HttpServer {
 			Socket socket = serverSocket.accept();
 			input = socket.getInputStream();
 			output = socket.getOutputStream();
-			Request request = new Request(input);
-			String get = request.parse();
+			Request request = new Request();
+			request.setInput(input);
+			request.parse();
 			Response response = new Response(output);
-			response.getOutput(application.getAdress(get));
-//			application.setResponse(response);
-//			application.getAdress();
-//			socket.close();
-//			serverSocket.close();
+			response.setOutput(output);
+			application.setRequest(request);
+			application.setResponse(response);
+			application.getAdress();
+			socket.close();
 		} 
 	}
 	public static void main(String[] args) throws UnknownHostException,
