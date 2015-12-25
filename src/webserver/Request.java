@@ -3,10 +3,24 @@ package webserver;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * 接收客户端的http请求，并截取出URI
+ * 
+ * @author: John
+ * @Class: Request
+ * @date: 2015年12月25日
+ */
 public class Request {
 	private InputStream input;
-	private String url;	
+	private String url;
 
+	/**
+	 * 截取http请求中的uri
+	 * 
+	 * @author:John
+	 * @return:String
+	 * @date: 2015年12月25日
+	 */
 	public String parse() throws IOException {
 		StringBuffer request = new StringBuffer(2048);
 		int i;
@@ -20,6 +34,13 @@ public class Request {
 		return url;
 	}
 
+	/**
+	 * 截取http请求中uri
+	 * 
+	 * @author:John
+	 * @return:String
+	 * @date: 2015年12月25日
+	 */
 	private String parseUrl(String requestString) {
 		int index1 = requestString.indexOf(" ");
 		int index2;
@@ -47,7 +68,5 @@ public class Request {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
 
-	
 }
