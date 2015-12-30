@@ -1,7 +1,7 @@
 package webserver;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.PrintStream;
 
 /**
  * 将服务器的流返回给客户端
@@ -12,17 +12,20 @@ import java.io.OutputStream;
  */
 public class Response {
 
-	private OutputStream output;
+	private PrintStream output;
+	public void getOutput(String result){
+		output.println(result);
+	}
 
 	public void getOutput(byte[] result) throws IOException {
 		output.write(result);
 	}
 
-	public void setOutput(OutputStream output) {
+	public void setOutput(PrintStream output) {
 		this.output = output;
 	}
 
-	public Response(OutputStream output) {
+	public Response(PrintStream output) {
 		// super();
 		this.output = output;
 	}

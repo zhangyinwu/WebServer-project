@@ -2,6 +2,7 @@ package webserver;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLDecoder;
 
 /**
  * 接收客户端的http请求，并截取出URI
@@ -29,8 +30,11 @@ public class Request {
 		for (int j = 0; j < i; j++) {
 			request.append((char) buffer[j]);
 		}
-		System.out.println(request.toString());
+		HttpServer.logger.info(request.toString());
 		url = parseUrl(request.toString());
+		System.out.println(url);
+		url = URLDecoder.decode(url, "utf-8");
+		System.out.println(url);
 		return url;
 	}
 
